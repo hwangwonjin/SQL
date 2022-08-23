@@ -59,12 +59,12 @@ delete from `user1` where `age` >= 30;
 
 #실습 1-7
 
-create table ``(
-	``       varchar(10),
-
-
-
-
+create table `TrlUser`(
+	`userId`       varchar(10),
+	`userName` 		 varchar(10),
+    `userHp`		char(13),
+    `userAge`		tinyint,
+    `userAddr`		varchar(20)
 );
 
 
