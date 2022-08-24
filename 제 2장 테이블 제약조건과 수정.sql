@@ -86,4 +86,7 @@ alter table `user5` add `uid` varchar(10);
 #실습 2-13
 #실습 2-14
 #실습 2-15
+create table `user6` like `user5`;
+
 #실습 2-16
+insert into `user6` select*from`user5`;
