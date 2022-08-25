@@ -99,8 +99,12 @@ select * from `member` where `dep` in (101, 102,103);
 select * from `member` where `name` like '김%';
 select * from `member` where `name` like '김_ _';
 select * from `member` where `name` like '_성_';
-
-
+select * from `sales` where `sale`>50000;
+select * from `sales` where `sale` >= 50000 and `sale` <10000 and `month`= 1;
+select * from `sales` where `sale` between 500000 and 100000;
+select * from `sales` where `sale` not between 50000 and 100000;
+select *from `sales` where `year` in (2020);
+select * from `sales` where `month` in(1,2);
 
 
 
@@ -112,8 +116,9 @@ select * from `sales` order by `sale` desc;
 select * from `sales` 
 where `sale`> 50000
 order by `year`, `month`, `sale` desc;
-
-
+select * from `member` order by `name`;
+select * from `member` order by  `name` desc;
+select *from `sales` where `sale`> 50000 order by `sale` desc;
 
 
 #실습 4-5
@@ -124,12 +129,14 @@ select *from `sales` limit 5,3;
 select *from `sales` order by `sale`;
 select *from `sales` order by `sale` desc limit 3,5;
 select *from `sales` where `sale` < 50000 order by `sale` desc limit 3;
-
+select *from `sales` where `sale` > 50000 order by `year` desc, `month`, `sale`desc limit 5;
 #실습 4-6
 select sum(`sale`) as `매출 총합` from `sales`;
 select count(`seq`) as `갯수` from `sales`;
 select substring(`hp`,10,4) as `휴대폰 끝자리`from `member`;
-
+select avg(sale) as `평균`from  `sales`;
+select max(sale) as `최댓값` from `sales`;
+select min(sale) as `최솟값` from `sales`;
 insert into `member` values('b101', '을지문덕','010-5555-1234', '사장',107, now());
 
 
@@ -144,14 +151,10 @@ select
  from `sales` 
  where `year`= 2019 and `month`=2 and `sale`>= 50000;
 
-
 #실습 4-9
 select min(`sale`) as `최저`,
 	max(`sale`) as `최고`
 from `sales` where `year` = 2020 ;
-
-
-
 
 #실습 4-1
 #실습 4-1
