@@ -129,12 +129,12 @@ select a.orderId, b.prodName from `order` as a
 join `product` as b
 on a.orderproduct = b.prodno
 where `orderId` = 'c102';
-#실습1-30'
+#실습1-30
 select `orderId`, `name`, `prodName`, `orderDate` from `order` as a
 join `Customer` as b
 on a.orderId = b.custId
 join `product` as c 
 on a.orderProduct = c.prodno
-where date_format(`orderDate`,'%y-%m-%d') = date_format('2022-07-03','%y-%m-%d') ;
+where date_format(`orderDate`,'%y-%m-%d') = date_format('2022-07-03','%y-%m-%d') ; 
 
 
