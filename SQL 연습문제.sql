@@ -77,30 +77,64 @@ select *from `product`;
 #실습1-7
 select`company`from `product`;
 #실습1-8
-select  *from `product`;
+select  distinct `company` from `product`;
 #실습1-9
-
+select`prodName`, `price`from `product`;
 #실습1-10
+select`prodName`,`price`+500 as `조정단가`from `product`;
 #실습1-11
+select`prodName`, `stock`, `price` from `product` where `company`='오리온';
 #실습1-12
+select `orderProduct`, `orderCount`, `orderDate` from `order` where `orderId` = 'c102';
 #실습1-13
+select`orderProduct`, `orderCount`, `orderDate` from `order` where `orderId` = 'c102' and  `orderCount` >= 2; 
 #실습1-14
+select*from `product` where `price`>=1000 and `price`<=2000;
 #실습1-15
+select`custId`, `name`, `hp`, `addr` from `customer` where `name` like '김%';
 #실습1-16
+select `custId`,`name`, `hp`, `addr` from `customer` where `name` like '__';
 #실습1-17
+select * from `customer` where `hp` is null;
 #실습1-18
+select * from `customer` where `addr` is not null;
 #실습1-19
+select * from `customer` order by `rdate` desc;
 #실습1-20
+select * from `order` where `ordercount` >= 3 order by `ordercount` desc,  `orderproduct` asc; 
 #실습1-21
+select avg(`price`)  from `product`;
 #실습1-22
+select sum(`stock`) as `재고량 합계` from `product` where `company` = '농심';
 #실습1-23
+select count(`name`) as `고객수` from `Customer`;
 #실습1-24
+select count(distinct `company`) as `제조업체 수` from `Product`;
 #실습1-25
+select `orderProduct` as `주문 상품번호`, sum(`orderCount`) as ` 총 주문수량` 
+from `order` group by `주문 상품번호` 
+order by `주문 상품번호` asc  ;
 #실습1-26
+select `company` as `제조업체`, count(*) as `제품수`, max(`price`) as `최고가`
+ from `product` group by `제조업체` order by `제조업체` asc;
 #실습1-27
+select `company` as `제조업체`, count(*) as `제품수`, max(`price`) as `최고가` 
+from `product` group by `company` having count(*) >= 2 ;
 #실습1-28
+select `orderProduct`, `orderId`, sum(`ordercount`) as `총 주문수량`
+ from `order` 
+ group by `orderProduct`, `orderId` order by `orderProduct`, `orderId` asc ; 
 #실습1-29
-#실습1-30
-
+select a.orderId, b.prodName from `order` as a
+join `product` as b
+on a.orderproduct = b.prodno
+where `orderId` = 'c102';
+#실습1-30'
+select `orderId`, `name`, `prodName`, `orderDate` from `order` as a
+join `Customer` as b
+on a.orderId = b.custId
+join `product` as c 
+on a.orderProduct = c.prodno
+where date_format(`orderDate`,'%y-%m-%d') = date_format('2022-07-03','%y-%m-%d') ;
 
 
