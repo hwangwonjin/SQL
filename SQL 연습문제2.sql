@@ -153,7 +153,7 @@ on a.a_c_no=c.c_no;
 
 #실습2-26
 select `a_no` as `계좌번호`,`a_item_name` as `계좌이름`,
-`a_c_no` as `주민번호`,`c_no` as `고객명`,`a_balance` as `현재잔액` 
+`a_c_no` as `주민번호`,`c_name` as `고객명`,`a_balance` as `현재잔액` 
 from `bank_account` as a
 join `bank_customer` as b
 on a.a_c_no=b.c_no;
@@ -187,7 +187,9 @@ select
     `t_datetime`
  from `bank_transaction` as a
 join `bank_account` as b on a.t_a_no=b.a_no
-join `bank_customer`as c on b.a_c_no = c.c_no;
+join `bank_customer`as c on b.a_c_no = c.c_no
+where `t_dist` =1 
+order by `t_amount`desc;
 
 #실습2-30
 select 
