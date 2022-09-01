@@ -167,12 +167,69 @@ select *
 
 
 #실습3-23
-select
+select`regstdno`,
+		`reglecno`,
+		`lecname`,
+		`regmidscore`,
+		`regFinalScore`,
+		`regTotalScore`,
+		`regGrade` 
+        from `register` as a
+join `lecture` as b on a.regLecNo = b.lecno
+join `student` as c on a.regStdNo = c.stdno;
 
 #실습3-24
+select count(*) as `사회복지 마케팅 수강 신청 건수`,
+avg(`regtotalscore`) as `사회복지 마케팅 평균`
+ from `register`as a 
+join `lecture` as b on a.regLecNo = b.lecno
+where `regLecNo` = 349;
+
 #실습3-25
+select `regStdNo`,`lecname` from `register` as a
+join `lecture` as b
+on a.regLecNo = b.lecno
+where `regGrade` = 'A';
+
 #실습3-26
+select * from `student` as a
+join `register` as b on a.stdno = b.regStdNo
+join `lecture` as c on b.reglecno = c.lecNo;
+
 #실습3-27
+select 
+	`stdno`,
+    `stdname`,
+    `lecno`,
+    `lecname`,
+    `regmidscore`,
+    `regFinalScore`,
+    `regTotalScore`,
+    `regGrade` from `student` as a
+join `register` as b on a.stdno = b.regstdno
+join `lecture` as c on b.reglecno = c.lecno
+order by `reggrade` asc;
+
 #실습3-28
+select `stdno`,`stdname`,`lecname`,`regtotalscore`,`regGrade` from `student`as a
+join `register` as b on a.stdno = b.regstdno
+join `lecture` as c on b.regLecNo = c.lecno
+order by `reggrade` desc
+limit 1;
+
 #실습3-29
+select `stdno`,`stdname`,sum(`lecCredit`) from `student` as a 
+join `register` as b on a.stdno = b.regstdno
+join `lecture` as c on b.reglecno = c.lecno
+where `regTotalScore` >= 60
+group by `stdno`
+order by `stdno` asc;
+
 #실습3-30
+select`stdno`,`stdname`,
+group_concat(`lecname`) as `신청과목`,
+group_concat(if(`regTotalScore` >= 60,`lecname`, null)) as `이수과목`
+ from `student` as a
+join `register` as b on a.stdno = b.regstdno
+join `lecture` as c on b.reglecno = c.lecno
+group by `stdno`;
